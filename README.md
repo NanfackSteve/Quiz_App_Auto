@@ -1,4 +1,4 @@
-# **Quiz App**
+# **Quiz_App_Auto**
 
 Une application web interactive pour tester vos connaissances grâce à des questions basées sur des images. L'utilisateur peut répondre à des questions, obtenir un score, et consulter son résultat.
 
@@ -52,7 +52,7 @@ cd Quiz_App_Auto
 ### 3. **Lancement du serveur local**
 Allez au dossier htdocs ou équivalent et lancez le serveur local.
 
-### 4. **Utilisation de l'API des données :
+### 4. **Utilisation de l'API des données**
 * Les données pour le quiz sont servies depuis le fichier data.php.
 * Assurez-vous que le serveur local est actif pour que les appels AJAX fonctionnent correctement.
 * Assurez vous de placer le fichier data.php dans le dossier htdocs ou équivalent.

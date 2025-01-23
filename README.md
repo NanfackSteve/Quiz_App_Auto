@@ -45,20 +45,41 @@ Commencez par cloner le repository GitHub sur votre machine locale :
 git clone https://github.com/votre-nom-utilisateur/Quiz_App_Auto.git
 cd Quiz_App_Auto
 ```
-### 2. **configuration du serveur local**
+### A - Deploiement avec Docker
+
+### 1. **Pré-requis**
+* Assurez-vous que Docker soit installé sur votre PC 
+* Si ce n'est pas installer le [ici](https://docs.docker.com/engine/install/)
+
+### 2. Créer une image Docker de l'application
+```
+docker build -t quizz-app .
+```
+
+### 3. Lancer l'application
+```
+docker run --rm -dit --name quizz -p 8888:80 quizz-app
+```
+
+### 4. Ouvrir l'application
+* Acceder à l'application via le lien `http://localhost:8888`
+
+### B - Deploiement avec XAMPP
+
+### 1. **configuration du serveur local**
 * Assurez-vous d'avoir un serveur local (par exemple, XAMPP ou WampServer).
 * Placez les fichiers du projet dans le répertoire htdocs ou équivalent.
 
-### 3. **Lancement du serveur local**
+### 2. **Lancement du serveur local**
 Allez au dossier htdocs ou équivalent et lancez le serveur local.
 
-### 4. **Utilisation de l'API des données**
+### 3. **Utilisation de l'API des données**
 * Les données pour le quiz sont servies depuis le fichier data.php.
 * Assurez-vous que le serveur local est actif pour que les appels AJAX fonctionnent correctement.
 * Assurez vous de placer le fichier data.php dans le dossier htdocs ou équivalent.
 * Assurer vous de modifier si necessaire les chemins pour recuperer les donnees de l'api dans le fichier script.js. exemple : http://localhost/Quiz_App_Auto/TP02/data.php
 
-### 5. **Accès au site web**
+### 4. **Accès au site web**
 
 Accédez à http://localhost/Quiz_App_Auto/start.html depuis votre navigateur.
 

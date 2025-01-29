@@ -7,8 +7,8 @@ $(document).ready(function () {
     let resultats = []; // Résultats de l'utilisateur
 
     // Configuration de l'URL
-    const hote = 'localhost'; // Hôte
-    const port = '80'; // Port
+    const hote = window.location.hostname; // Hôte
+    const port = window.location.port;; // Port
     const cheminBase = '/TP02/'; // Chemin de base
 
     // URL de base pour les requêtes AJAX

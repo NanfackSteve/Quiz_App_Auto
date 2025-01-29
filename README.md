@@ -58,11 +58,13 @@ docker build -t quizz-app .
 
 ### 3. Lancer l'application
 ```
-docker run --rm -dit --name quizz -p 8888:80 quizz-app
+docker run --rm -dit --name quizz -p 2525:80 quizz-app
 ```
 
 ### 4. Ouvrir l'application
-* Acceder à l'application via le lien `http://localhost:8888`
+* Acceder à l'application via le lien `http://localhost:2525`
+* PS: Vous pouvez mapper n'importe quel port hote autre que le 2525.
+  ex: `docker run --rm -dit --name quizz -p 2370:80 quizz-app` et acceder via `http://localhost:2370`
 
 ### B - Deploiement avec XAMPP
 

@@ -6,6 +6,14 @@ $(document).ready(function () {
     let questionsAleatoires = []; // Questions sélectionnées aléatoirement
     let resultats = []; // Résultats de l'utilisateur
 
+    // Configuration de l'URL
+    const hote = 'localhost'; // Hôte
+    const port = '80'; // Port
+    const cheminBase = '/TP02/'; // Chemin de base
+
+    // URL de base pour les requêtes AJAX
+    const baseURL = `http://${hote}:${port}${cheminBase}`;
+
     // Identification de la page actuelle
     const estPageQuiz = window.location.pathname.includes('quiz.html');
     const estPageResultats = window.location.pathname.includes('results.html');
@@ -64,7 +72,7 @@ $(document).ready(function () {
             const index = $(this).data('index');
             const resultat = resultats[index];
 
-            $('#questionImage').attr('src', `http://localhost:8888/TP02/data/${resultat.question}`).show();
+            $('#questionImage').attr('src', `${baseURL}data/${resultat.question}`).show();
             $('#questionDescriptionTitle').text(resultat.categorieCorrecte);
             $('#questionDescriptionText').text(resultat.descriptionCorrecte);
         });
@@ -75,13 +83,13 @@ $(document).ready(function () {
         $.ajax({
             method: 'GET',
             dataType: 'json',
-            url: 'http://localhost:8888/TP02/data.php/?data=images',
+            url: `${baseURL}data.php/?data=images`,
             success: function (donnees) {
                 donneesQuiz = donnees.images;
 
                 // Sélectionner 10 questions aléatoires
                 questionsAleatoires = donneesQuiz.sort(() => 0.5 - Math.random()).slice(0, 10);
-        
+
                 chargerQuestion();
             },
             error: function () {
@@ -94,7 +102,7 @@ $(document).ready(function () {
     function chargerQuestion() {
         if (questionActuelle < questionsAleatoires.length) {
             const image = questionsAleatoires[questionActuelle];
-            $('#quizImage').attr('src', `http://localhost:8888/TP02/data/${image}`);
+            $('#quizImage').attr('src', `${baseURL}data/${image}`);
 
             // Réinitialiser les boutons radio et leurs labels
             $('input[name="category"]').prop('checked', false).val('');
@@ -104,7 +112,7 @@ $(document).ready(function () {
             $.ajax({
                 method: 'GET',
                 dataType: 'json',
-                url: `http://localhost:8888/TP02/data.php/?data=response&image=${image}`,
+                url: `${baseURL}data.php/?data=response&image=${image}`,
                 success: function (reponse) {
                     const descriptionCorrecte = reponse.description;
 
@@ -112,7 +120,7 @@ $(document).ready(function () {
                     $.ajax({
                         method: 'GET',
                         dataType: 'json',
-                        url: 'http://localhost:8888/TP02/data.php/?data=propositions',
+                        url: `${baseURL}data.php/?data=propositions`,
                         success: function (donnees) {
                             let descriptionsMelangees = donnees.propositions.sort(() => 0.5 - Math.random()).slice(0, 4);
 
@@ -139,7 +147,7 @@ $(document).ready(function () {
             $.ajax({
                 method: 'GET',
                 dataType: 'json',
-                url: 'http://localhost:8888/TP02/data.php/?data=categories',
+                url: `${baseURL}data.php/?data=categories`,
                 success: function (donnees) {
                     $('input[name="category"]').each(function (index) {
                         $(this).val(donnees.categories[index]);
@@ -170,7 +178,7 @@ $(document).ready(function () {
         $.ajax({
             method: 'GET',
             dataType: 'json',
-            url: `http://localhost:8888/TP02/data.php/?data=response&image=${image}`,
+            url: `${baseURL}data.php/?data=response&image=${image}`,
             success: function (donnees) {
                 let score = 0;
 
